@@ -12,14 +12,43 @@ fn main() {
     }
 
     println!("Guess the number game!");
+    loop {
+        println!("Please enter your guess:");
 
-    println!("Please enter your guess:");
+        let mut guess: String = String::new();
 
-    let mut guess = String::new();
+        // Read user input from stdin
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
 
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
+        // In debug mode, print the guess
+        if cfg!(debug_assertions) {
+            println!("Your guess was: {}", guess.trim());
+        }
 
-    println!("Your guess was: {}", guess.trim());
+        // Check if the input was exit and break the loop
+        if guess.trim().eq_ignore_ascii_case("exit") {
+            println!("Exiting the game.");
+            break;
+        }
+
+        // Parse the input string to a number
+        // If parsing fails, it will panic with the provided message
+        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+
+        // Compare the guess with the secret number
+        match guess.cmp(&secret_number) {
+            std::cmp::Ordering::Less => {
+                println!("Too small!");
+            }
+            std::cmp::Ordering::Greater => {
+                println!("Too big!");
+            }
+            std::cmp::Ordering::Equal => {
+                println!("You guessed it!");
+                break;
+            }
+        }
+    }
 }
