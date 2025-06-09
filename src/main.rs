@@ -13,6 +13,7 @@ fn main() {
     }
 
     println!("Guess the number game!");
+    print!("You can exit the game by typing 'exit'.\n");
     println!("------------------------------------");
     loop {
         println!("Please enter your guess:");
@@ -30,7 +31,6 @@ fn main() {
         }
 
         // Check if the input was exit and break the loop
-        // TODO(cj): Add a information how to exit the game
         if guess.trim().eq_ignore_ascii_case("exit") {
             println!("Exiting the game.");
             break;
@@ -54,6 +54,7 @@ fn main() {
             }
             std::cmp::Ordering::Equal => {
                 println!("You guessed it!");
+                // TODO(cj): change text if the user needed only one attempt
                 println!("You needed {} attempts to guess the number.", attempts + 1);
                 break;
             }
