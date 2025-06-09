@@ -4,6 +4,7 @@ use rand::Rng;
 
 fn main() {
     let secret_number = rand::rng().random_range(1..100);
+    let mut attempts = 0;
 
     // The secret number is only printed in debug mode
     if cfg!(debug_assertions) {
@@ -12,6 +13,7 @@ fn main() {
     }
 
     println!("Guess the number game!");
+    println!("------------------------------------");
     loop {
         println!("Please enter your guess:");
 
@@ -28,6 +30,7 @@ fn main() {
         }
 
         // Check if the input was exit and break the loop
+        // TODO(cj): Add a information how to exit the game
         if guess.trim().eq_ignore_ascii_case("exit") {
             println!("Exiting the game.");
             break;
@@ -51,8 +54,14 @@ fn main() {
             }
             std::cmp::Ordering::Equal => {
                 println!("You guessed it!");
+                println!("You needed {} attempts to guess the number.", attempts + 1);
                 break;
             }
         }
+
+        // Print the number of attempts so far
+        attempts += 1;
+        println!("Attempts so far: {}", attempts);
+        println!("------------------------------------\n");
     }
 }
