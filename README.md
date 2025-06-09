@@ -22,4 +22,21 @@ This is a simple command-line guessing game written in Rust. The program generat
 
    Debug mode builds faster but is less optimized.
 
+   **Difference between release and debug mode:**  
+   Release mode enables optimizations, making the program run faster and more efficiently, but takes longer to compile. Debug mode compiles quickly and is useful during development, but the resulting program runs slower.
+
 4. Follow the on-screen instructions to play the game.
+
+## Tutorial
+
+This project is based on the official Rust guessing game tutorial:  
+https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html
+
+## What I Learned
+
+- How to set up a Rust project using Cargo.
+- How to read user input and handle input errors.
+- How to generate random numbers in Rust.
+- How to use control flow (loops, conditionals) in Rust.
+- How to compare values and provide feedback to the user.
+- The difference between debug and release builds in Rust.
