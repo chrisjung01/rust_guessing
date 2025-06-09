@@ -33,9 +33,13 @@ fn main() {
             break;
         }
 
-        // Parse the input string to a number
-        // If parsing fails, it will panic with the provided message
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please type a valid number!");
+                continue; // Skip to the next iteration of the loop
+            }
+        };
 
         // Compare the guess with the secret number
         match guess.cmp(&secret_number) {
